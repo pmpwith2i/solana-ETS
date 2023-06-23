@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useApplicationContextState } from '@/contexts/ApplicationContext';
 import { NavigationElement } from '@/types/navigation';
 import { classNames } from '@/utils/classNames';
@@ -23,8 +24,8 @@ export const StaticSidebar = ({ navigation }: StaticSidebarProps) => {
                 href={item.href}
                 className={classNames(
                   item.current
-                    ? 'bg-button-primary text-white hover:bg-button-primary/80'
-                    : 'text-gray-200 hover:bg-gray-50 hover:text-gray-900',
+                    ? 'bg-button-primary text-white'
+                    : 'text-gray-200 hover:bg-white/10 hover:text-gray-100',
                   'group flex items-center rounded-md px-2 py-2 text-sm font-medium'
                 )}
               >
@@ -47,17 +48,14 @@ export const StaticSidebar = ({ navigation }: StaticSidebarProps) => {
             <div className='flex items-center'>
               <div>
                 <img
-                  className='inline-block h-9 w-9 rounded-full'
-                  src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+                  className='inline-block h-10 w-10 rounded-full'
+                  src={user?.profileImage}
                   alt=''
                 />
               </div>
               <div className='ml-3'>
-                <p className='text-sm font-medium text-gray-200 group-hover:text-gray-300'>
+                <p className='text-base font-medium text-gray-200'>
                   {user?.name}
-                </p>
-                <p className='text-xs font-medium text-gray-300 group-hover:text-gray-400'>
-                  View profile
                 </p>
               </div>
             </div>

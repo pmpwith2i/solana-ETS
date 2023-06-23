@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import { HomepageHero } from '@/components/hero/HomepageHero';
-import { Navbar } from '@/components/navbar/Navbar';
+
 import { Mission } from '@/components/stats/Mission';
 
 const Home = () => {
@@ -14,7 +14,6 @@ const Home = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className='bg-black'>
-        <Navbar />
         <HomepageHero />
         <Mission />
       </main>

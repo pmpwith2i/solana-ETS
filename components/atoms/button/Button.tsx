@@ -21,6 +21,7 @@ interface ButtonProps {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -29,13 +30,16 @@ export const Button = ({
   variant,
   onClick,
   className = '',
+  disabled = false,
 }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
+      disabled={disabled}
       className={classNames(
         classes[size || 'default'],
         variants[variant || 'primary'],
+        'disabled:cursor-not-allowed disabled:opacity-30',
         className
       )}
     >

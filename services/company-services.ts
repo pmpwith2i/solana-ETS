@@ -33,6 +33,7 @@ export const setupCreateCompanyIx = async ({
   const payload = new BorshPayload({
     name: companyName,
     address,
+    created_at: Date.now(),
   });
 
   const createCompanySchema = new Map([
@@ -43,6 +44,7 @@ export const setupCreateCompanyIx = async ({
         fields: [
           ['name', 'string'],
           ['address', 'string'],
+          ['created_at', 'u64'],
         ],
       },
     ],

@@ -1,7 +1,7 @@
 import { useApplicationContextState } from '@/contexts/ApplicationContext';
 import { Portal } from '@/hoc/withModal';
 import { formatDecimals } from '@/utils/formatDecimals';
-import { Transition, Dialog } from '@headlessui/react';
+import { Dialog, Transition } from '@headlessui/react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { Fragment, useMemo, useState } from 'react';
 import { Button } from '../atoms/button/Button';
@@ -16,7 +16,8 @@ export const ExchangeTokenDialog = ({
   closeModal,
   exchangeType,
 }: ExchangeTokenDialogProps) => {
-  const { balance, user, buyTokens, sellTokens } = useApplicationContextState();
+  const { balance, buyTokens, sellTokens, tokenAccount } =
+    useApplicationContextState();
 
   const [amount, setAmount] = useState(0);
 
@@ -38,6 +39,28 @@ export const ExchangeTokenDialog = ({
 
     closeModal();
   };
+
+  const formattedWalletTokenBalance = useMemo(() => {
+    return Number(formatDecimals(tokenAccount?.amount ?? 0, 9));
+  }, [tokenAccount?.amount]);
+
+  const isBalanceSufficient = useMemo(() => {
+    if (!balance) return false;
+    if (!formattedWalletTokenBalance) return false;
+    if (isNaN(amount)) return false;
+
+    console.log({ balance, amount });
+    if (exchangeType === 'buy') return balance >= Number(calculatedSOLPrice);
+    if (exchangeType === 'sell') {
+      return formattedWalletTokenBalance >= amount;
+    }
+  }, [
+    balance,
+    amount,
+    formattedWalletTokenBalance,
+    calculatedSOLPrice,
+    exchangeType,
+  ]);
 
   return isOpen ? (
     <Portal>
@@ -128,6 +151,7 @@ export const ExchangeTokenDialog = ({
                           {exchangeType === 'sell' ? '+' : '-'}
                           <span className='text-gray-500 sm:text-sm'></span>
                         </div>
+
                         <input
                           type='text'
                           name='price'
@@ -150,11 +174,23 @@ export const ExchangeTokenDialog = ({
                     </div>
                   </div>
 
-                  <div className='mt-4'>
+                  {!isBalanceSufficient && (
+                    <div className='mt-4 flex items-center pr-3'>
+                      <span className='text-red-500 sm:text-sm'>
+                        Insufficient Amount of
+                        {exchangeType === 'buy'
+                          ? ` SOL (${balance})`
+                          : ` ETS (${formattedWalletTokenBalance})`}{' '}
+                        in the wallet
+                      </span>
+                    </div>
+                  )}
+                  <div className='mt-2'>
                     <Button
                       variant='primary'
                       onClick={handleBuyTokens}
                       size='xl'
+                      disabled={!isBalanceSufficient || amount === 0}
                     >
                       {`${
                         exchangeType === 'buy' ? 'Buy' : 'Sell'

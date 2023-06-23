@@ -1,15 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 import { Disclosure } from '@headlessui/react';
 
-import { Button } from '../atoms/button/Button';
 import { useApplicationContextState } from '@/contexts/ApplicationContext';
 import Link from 'next/link';
+import { Button } from '../atoms/button/Button';
 
 export const Navbar = () => {
   const { onLogin, onLogout, user } = useApplicationContextState();
 
   return (
     <Disclosure as='nav' className='shadow'>
-      {({ open }) => (
+      {() => (
         <>
           <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
             <div className='flex h-16'>

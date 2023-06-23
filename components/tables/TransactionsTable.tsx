@@ -5,10 +5,9 @@ interface TransactionsTableProps {
 }
 
 import {
-  ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
 } from '@heroicons/react/20/solid';
-import { useMemo } from 'react';
 
 export const TransactionsTable = ({ transactions }: TransactionsTableProps) => {
   const formatSolBalance = (amount: number) => {

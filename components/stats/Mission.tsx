@@ -6,23 +6,28 @@ export const Mission = () => {
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-2xl lg:mx-0 lg:max-w-none'>
           <h2 className='text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl'>
-            Our mission
+            The thesis
           </h2>
           <div className='mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row'>
             <div className='lg:w-full lg:max-w-2xl lg:flex-auto'>
               <p className='text-xl leading-8 text-gray-200'>
-                Aliquet nec orci mattis amet quisque ullamcorper neque, nibh
-                sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque
-                id at vitae feugiat egestas ac. Diam nulla orci at in viverra
-                scelerisque eget. Eleifend egestas fringilla sapien.
+                {`Considering the growth of blockchain-based technologies and
+                decentralized applications this thesis aims to explore the
+                potential of Solana, a blockchain committed to studying
+                open-sourcing the data and taking steps to bring the chain's
+                footprint to zero. Specifically, the thesis will examine how
+                Solana's features, such as its high transaction speed and low
+                transaction fees, can facilitate the implementation and
+                operation of an Emission Trading System.`}
               </p>
               <p className='mt-10 max-w-xl text-base leading-7 text-gray-400'>
-                Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget
-                risus enim. Mattis mauris semper sed amet vitae sed turpis id.
-                Id dolor praesent donec est. Odio penatibus risus viverra tellus
-                varius sit neque erat velit. Faucibus commodo massa rhoncus,
-                volutpat. Dignissim sed eget risus enim. Mattis mauris semper
-                sed amet vitae sed turpis id.
+                {`Through this thesis, I aim to explore the technical aspects,
+                challenges, and potential benefits of implementing a simple
+                Solana-based ETS. By conducting an analysis of the existing ETS
+                frameworks, examining the capabilities of the Solana blockchain,
+                and designing and implementing a prototype system, we can gain
+                insights into the practicality and scalability of such an
+                application.`}
               </p>
             </div>
             <div className='lg:flex lg:flex-auto lg:justify-center'>
