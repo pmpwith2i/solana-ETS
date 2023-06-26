@@ -1,4 +1,5 @@
 import { ApplicationContextProvider } from '@/contexts/ApplicationContext';
+import { ToastProvider } from '@/contexts/ToastContext';
 
 import '@/styles/globals.css';
 import { NextPage } from 'next';
@@ -22,9 +23,11 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <ApplicationContextProvider>
-      <main className={inter.className}>
-        {getLayout(<Component {...pageProps} />)}
-      </main>
+      <ToastProvider>
+        <main className={inter.className}>
+          {getLayout(<Component {...pageProps} />)}
+        </main>
+      </ToastProvider>
     </ApplicationContextProvider>
   );
 };

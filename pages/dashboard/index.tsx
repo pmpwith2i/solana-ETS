@@ -2,8 +2,10 @@ import { DashboardUserHeader } from '@/components/headers/DashboardUserHeader';
 import { DashboardDetailsList } from '@/components/lists/DashboardDetailsList';
 import { TransactionsTable } from '@/components/tables/TransactionsTable';
 import { useApplicationContextState } from '@/contexts/ApplicationContext';
+import { useToast } from '@/contexts/ToastContext';
 import { withDashboardLayout } from '@/hoc/withDashboardLayout';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { useEffect } from 'react';
 
 //TODO: Remember to add authentication to this route
 const Dashboard = withDashboardLayout(() => {
@@ -15,6 +17,12 @@ const Dashboard = withDashboardLayout(() => {
     transactions,
     company,
   } = useApplicationContextState();
+
+  const { toast } = useToast();
+
+  useEffect(() => {
+    toast('Welcome to your dashboard!');
+  }, [toast]);
 
   return (
     <div className='flex items-start'>

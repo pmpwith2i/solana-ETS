@@ -1,5 +1,5 @@
 import { useApplicationContextState } from '@/contexts/ApplicationContext';
-import { Portal } from '@/hoc/withModal';
+import { Portal } from '@/hoc/portal';
 import { formatDecimals } from '@/utils/formatDecimals';
 import { Dialog, Transition } from '@headlessui/react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
@@ -63,7 +63,7 @@ export const ExchangeTokenDialog = ({
   ]);
 
   return isOpen ? (
-    <Portal>
+    <Portal selector='#modal-container'>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as='div' className='relative z-10' onClose={closeModal}>
           <Transition.Child
